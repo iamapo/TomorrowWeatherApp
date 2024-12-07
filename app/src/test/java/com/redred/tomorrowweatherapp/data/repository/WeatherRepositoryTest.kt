@@ -3,6 +3,7 @@ package com.redred.tomorrowweatherapp.data.repository
 import com.redred.tomorrowweatherapp.data.api.WeatherApiService
 import com.redred.tomorrowweatherapp.data.model.weather.CurrentWeather
 import com.redred.tomorrowweatherapp.data.model.weather.DailyWeather
+import com.redred.tomorrowweatherapp.data.model.weather.HourlyWeather
 import com.redred.tomorrowweatherapp.data.model.weather.WeatherResponse
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -36,6 +37,10 @@ class WeatherRepositoryTest {
                 time = listOf("2023-05-01"),
                 sunrise = listOf("06:33"),
                 sunset = listOf("18:33")
+            ),
+            hourly = HourlyWeather(
+                time = listOf("2023-05-01T12:00"),
+                windspeed_10m = listOf(5.0)
             )
         )
 

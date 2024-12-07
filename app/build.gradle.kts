@@ -16,6 +16,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["allowDexGeneration"] = "false"
+
     }
 
     buildTypes {
@@ -27,6 +29,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -36,6 +39,19 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+
+    packaging {
+        resources {
+            excludes += setOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE.txt",
+                "META-INF/DEPENDENCIES",
+                "META-INF/NOTICE.md",
+                "META-INF/NOTICE.txt",
+                "META-INF/LICENSE-notice.md"
+            )
+        }
     }
 }
 
@@ -51,7 +67,9 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
+    testImplementation(libs.androidx.ui.test.junit4.android)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -67,5 +85,4 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.junit)
     testImplementation(libs.kotlin.test)
-
 }
