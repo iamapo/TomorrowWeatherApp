@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">TomorrowWeatherApp</string>
+    <string name="wind_speed">Wind speed: %1$f km/h</string>
+    <string name="wind_direction">Wind direction: %1$s</string>
+    <string name="temperature">Temperature: %1$.1f °C</string>
+    <string name="loading">Loading weather data…</string>
+    <string name="error_message">An error occurred: %1$s</string>
+    <string name="invalid_direction">Invalid Direction</string>
+    <string name="north">North</string>
+    <string name="northeast">Northeast</string>
+    <string name="east">East</string>
+    <string name="southeast">Southeast</string>
+    <string name="south">South</string>
+    <string name="southwest">Southwest</string>
+    <string name="west">West</string>
+    <string name="northwest">Northwest</string>
 </resources>
