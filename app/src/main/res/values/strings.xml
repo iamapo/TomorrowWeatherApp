@@ -14,4 +14,8 @@
     <string name="southwest">Southwest</string>
     <string name="west">West</string>
     <string name="northwest">Northwest</string>
+    <string name="hourly_wind_forecast">Hourly Wind Forecast</string>
+    <string name="unknown_time">Unknown Time</string>
+    <string name="time_suffix">o\'Clock</string>
+    <string name="wind">Wind</string>
 </resources>

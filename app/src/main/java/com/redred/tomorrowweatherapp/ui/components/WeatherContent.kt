@@ -76,5 +76,7 @@ fun WeatherContent(weather: WeatherState.Success) {
         }
 
         Spacer(modifier = Modifier.height(16.dp))
+
+        HourlyWindForecast(weather.data.hourly)
     }
 }
