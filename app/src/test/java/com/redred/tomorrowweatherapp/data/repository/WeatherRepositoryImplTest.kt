@@ -2,7 +2,6 @@ package com.redred.tomorrowweatherapp.data.repository
 
 import com.redred.tomorrowweatherapp.data.api.WeatherApiService
 import com.redred.tomorrowweatherapp.data.model.weather.CurrentWeather
-import com.redred.tomorrowweatherapp.data.model.weather.DailyWeather
 import com.redred.tomorrowweatherapp.data.model.weather.HourlyWeather
 import com.redred.tomorrowweatherapp.data.model.weather.WeatherResponse
 import io.mockk.coEvery
@@ -13,15 +12,15 @@ import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertFailsWith
 
-class WeatherRepositoryTest {
+class WeatherRepositoryImplTest {
 
     private lateinit var api: WeatherApiService
-    private lateinit var repository: WeatherRepository
+    private lateinit var repository: WeatherRepositoryImpl
 
     @Before
     fun setup() {
         api = mockk()
-        repository = WeatherRepository(api)
+        repository = WeatherRepositoryImpl(api)
     }
 
     @Test
@@ -31,12 +30,8 @@ class WeatherRepositoryTest {
                 temperature = 20.5,
                 weathercode = 0,
                 windspeed = 5.0,
-                winddirection = 0.0
-            ),
-            daily = DailyWeather(
-                time = listOf("2023-05-01"),
-                sunrise = listOf("06:33"),
-                sunset = listOf("18:33")
+                winddirection = 0.0,
+                is_day = 1
             ),
             hourly = HourlyWeather(
                 time = listOf("2023-05-01T12:00"),

@@ -1,7 +1,10 @@
 package com.redred.tomorrowweatherapp.di
 
 import com.redred.tomorrowweatherapp.data.api.WeatherApiService
-import com.redred.tomorrowweatherapp.data.repository.WeatherRepository
+import com.redred.tomorrowweatherapp.data.repository.LocationRepositoryImpl
+import com.redred.tomorrowweatherapp.data.repository.WeatherRepositoryImpl
+import com.redred.tomorrowweatherapp.domain.LocationRepository
+import com.redred.tomorrowweatherapp.domain.WeatherRepository
 import com.redred.tomorrowweatherapp.ui.viewmodel.WeatherViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -17,7 +20,10 @@ val appModule = module {
             .create(WeatherApiService::class.java)
     }
 
-    single { WeatherRepository(get()) }
+    single<WeatherRepository> { WeatherRepositoryImpl(get()) }
 
-    viewModel { WeatherViewModel(get()) }
+    single<LocationRepository> { LocationRepositoryImpl() }
+
+    viewModel { WeatherViewModel(get(), get()) }
+
 }

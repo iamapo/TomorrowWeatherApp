@@ -9,11 +9,10 @@ import androidx.compose.ui.unit.dp
 import com.redred.tomorrowweatherapp.ui.util.WeatherIconUtils
 
 @Composable
-fun WeatherIcon(weatherCode: Int, sunrise: String, sunset: String) {
+fun WeatherIcon(weatherCode: Int, isDay: Int) {
     val icon = WeatherIconUtils.getWeatherIcon(
         weatherCode = weatherCode,
-        sunrise = sunrise,
-        sunset = sunset
+        isDay = isDay
     )
 
     Icon(

@@ -41,8 +41,8 @@ fun WeatherContent(weather: WeatherState.Success) {
 
         WeatherIcon(
             weatherCode = weather.data.current_weather.weathercode,
-            sunrise = weather.data.daily.sunrise[0],
-            sunset = weather.data.daily.sunset[0])
+            isDay = weather.data.current_weather.is_day
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 

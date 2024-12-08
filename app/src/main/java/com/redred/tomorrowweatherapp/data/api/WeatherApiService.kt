@@ -11,7 +11,5 @@ interface WeatherApiService {
         @Query("longitude") lon: Double,
         @Query("current_weather") currentWeather: Boolean = true,
         @Query("hourly") hourly: String = "windspeed_10m",
-        @Query("daily") daily: String = "sunrise,sunset",
-        @Query("timezone") timezone: String = "Europe/Berlin"
     ): WeatherResponse
 }

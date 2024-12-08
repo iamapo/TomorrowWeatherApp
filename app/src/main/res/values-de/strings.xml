@@ -18,4 +18,5 @@
     <string name="unknown_time">Unbekannte Zeit</string>
     <string name="time_suffix">Uhr</string>
     <string name="wind">Wind</string>
+    <string name="invalid_coordinates">Ungültige Koordinaten</string>
 </resources>

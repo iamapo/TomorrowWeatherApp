@@ -24,7 +24,7 @@ fun ErrorMessage(message: String) {
     ) {
         Icon(
             imageVector = Icons.Default.Warning,
-            contentDescription = "Fehler",
+            contentDescription = "Error",
             tint = MaterialTheme.colorScheme.error
         )
         Spacer(modifier = Modifier.height(8.dp))
