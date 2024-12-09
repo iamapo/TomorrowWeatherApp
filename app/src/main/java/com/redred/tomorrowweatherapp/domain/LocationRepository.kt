@@ -4,5 +4,5 @@ import com.redred.tomorrowweatherapp.data.model.location.Location
 
 interface LocationRepository {
 
-    fun getCities(): List<Location>
+    suspend fun getCities(): List<Location>
 }

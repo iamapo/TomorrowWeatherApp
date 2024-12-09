@@ -4,6 +4,7 @@ import com.redred.tomorrowweatherapp.data.api.WeatherApiService
 import com.redred.tomorrowweatherapp.data.model.weather.CurrentWeather
 import com.redred.tomorrowweatherapp.data.model.weather.HourlyWeather
 import com.redred.tomorrowweatherapp.data.model.weather.WeatherResponse
+import com.redred.tomorrowweatherapp.domain.WeatherRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -15,7 +16,7 @@ import kotlin.test.assertFailsWith
 class WeatherRepositoryImplTest {
 
     private lateinit var api: WeatherApiService
-    private lateinit var repository: WeatherRepositoryImpl
+    private lateinit var repository: WeatherRepository
 
     @Before
     fun setup() {

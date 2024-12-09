@@ -22,7 +22,7 @@ val appModule = module {
 
     single<WeatherRepository> { WeatherRepositoryImpl(get()) }
 
-    single<LocationRepository> { LocationRepositoryImpl() }
+    single<LocationRepository> { LocationRepositoryImpl(get()) }
 
     viewModel { WeatherViewModel(get(), get()) }
 

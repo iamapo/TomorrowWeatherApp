@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.redred.tomorrowweatherapp.ui.components.WeatherScreen
+import com.redred.tomorrowweatherapp.ui.WeatherScreen
 import com.redred.tomorrowweatherapp.ui.theme.TomorrowWeatherAppTheme
 
 class MainActivity : ComponentActivity() {

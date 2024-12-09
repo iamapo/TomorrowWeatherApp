@@ -1,5 +1,6 @@
 package com.redred.tomorrowweatherapp.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.redred.tomorrowweatherapp.data.model.location.Location
@@ -32,6 +33,8 @@ class WeatherViewModel(
         viewModelScope.launch {
             while (isActive) {
                 for (location in locationRepository.getCities()) {
+
+                    Log.d("WeatherViewModel", "Fetching weather for location: ${location.name}")
 
                     fetchWeather(location)
 
@@ -68,7 +71,7 @@ class WeatherViewModel(
 }
 
 sealed class WeatherState {
-    object Loading : WeatherState()
+    data object Loading : WeatherState()
     data class Success(
         val data: WeatherResponse,
         val cityName: String
