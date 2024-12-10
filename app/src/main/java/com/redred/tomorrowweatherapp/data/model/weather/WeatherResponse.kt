@@ -6,7 +6,7 @@ data class WeatherResponse(
     @SerializedName("current_weather")
     val current_weather: CurrentWeather,
     @SerializedName("hourly")
-    val hourly: HourlyWeather
+    var hourly: HourlyWeather
 )
 
 data class CurrentWeather(
@@ -26,5 +26,6 @@ data class HourlyWeather(
     @SerializedName("time")
     var time: List<String>,
     @SerializedName("windspeed_10m")
-    val windspeed_10m: List<Double>
+    val windspeed_10m: List<Double>,
+    val highlighted: List<Boolean>
 )

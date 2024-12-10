@@ -78,9 +78,18 @@ class WeatherViewModel(
             val startIndex = if (currentHourIndex != -1) currentHourIndex else 0
             val endIndex = (startIndex + 6).coerceAtMost(hourlyWeather.time.size)
 
-            response.hourly.time = hourlyWeather.time.subList(startIndex, endIndex).map { timeString ->
+            val formattedTimes = hourlyWeather.time.subList(startIndex, endIndex).map { timeString ->
                 formatTime(timeString, dateFormat, timeFormat)
             }
+
+            val highlighted = List(formattedTimes.size) { index ->
+                index == 2
+            }
+
+            Log.d("WeatherViewModel", "Formatted Times: $highlighted")
+
+            response.hourly.time = formattedTimes
+            response.hourly = response.hourly.copy(highlighted = highlighted)
 
             _weatherState.emit(
                 WeatherState.Success(

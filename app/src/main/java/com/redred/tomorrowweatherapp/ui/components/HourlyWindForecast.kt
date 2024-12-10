@@ -31,7 +31,8 @@ fun HourlyWindForecast(weather: WeatherState.Success) {
         items(weather.data.hourly.time) { timeString ->
             ForecastCard(
                 time = timeString,
-                windspeed = weather.data.hourly.windspeed_10m[weather.data.hourly.time.indexOf(timeString)]
+                windspeed = weather.data.hourly.windspeed_10m[weather.data.hourly.time.indexOf(timeString)],
+                highlighted = weather.data.hourly.highlighted.get(weather.data.hourly.time.indexOf(timeString))
             )
         }
     }
@@ -50,19 +51,20 @@ fun ForecastHeader() {
 }
 
 @Composable
-fun ForecastCard(time: String, windspeed: Double) {
+fun ForecastCard(time: String, windspeed: Double, highlighted: Boolean) {
 
-    Card(modifier = Modifier.padding(8.dp)) {
+    Card(modifier = Modifier
+        .padding(8.dp)) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(8.dp)
+                .background(if (highlighted) Color.Yellow else Color.Transparent),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(text = "$time ${stringResource(id = R.string.time_suffix)}", style = MaterialTheme.typography.bodyMedium)
             Row(
-                modifier = Modifier.background(color = Color.Gray),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
