@@ -13,6 +13,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class WeatherViewModel(
     private val weatherRepository: WeatherRepository,
@@ -56,6 +60,28 @@ class WeatherViewModel(
             _weatherState.emit(WeatherState.Loading)
             val response: WeatherResponse = weatherRepository.getWeather(location.lat, location.lon)
 
+            val hourlyWeather = response.hourly
+
+            val currentTime = System.currentTimeMillis()
+            val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+            val timeFormat = DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault())
+
+            val parsedTimes = hourlyWeather.time.map { timeString ->
+                try {
+                    LocalDateTime.parse(timeString, dateFormat).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+                } catch (e: Exception) {
+                    0L
+                }
+            }
+
+            val currentHourIndex = parsedTimes.indexOfFirst { it >= currentTime }
+            val startIndex = if (currentHourIndex != -1) currentHourIndex else 0
+            val endIndex = (startIndex + 6).coerceAtMost(hourlyWeather.time.size)
+
+            response.hourly.time = hourlyWeather.time.subList(startIndex, endIndex).map { timeString ->
+                formatTime(timeString, dateFormat, timeFormat)
+            }
+
             _weatherState.emit(
                 WeatherState.Success(
                     data = response,
@@ -66,6 +92,15 @@ class WeatherViewModel(
             _weatherState.emit(
                 WeatherState.Loading
             )
+        }
+    }
+
+    private fun formatTime(timeString: String, dateFormat: DateTimeFormatter, timeFormat: DateTimeFormatter): String {
+        return try {
+            val parsedTime = LocalDateTime.parse(timeString, dateFormat)
+            timeFormat.format(parsedTime)
+        } catch (e: Exception) {
+            "00:00"
         }
     }
 }

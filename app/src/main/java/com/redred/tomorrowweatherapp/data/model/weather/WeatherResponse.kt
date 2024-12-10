@@ -24,7 +24,7 @@ data class CurrentWeather(
 
 data class HourlyWeather(
     @SerializedName("time")
-    val time: List<String>,
+    var time: List<String>,
     @SerializedName("windspeed_10m")
     val windspeed_10m: List<Double>
 )
