@@ -25,6 +25,7 @@ import com.redred.tomorrowweatherapp.ui.viewmodel.WeatherState
 
 @Composable
 fun HourlyWindForecast(weather: WeatherState.Success) {
+    ForecastHeader()
 
     LazyColumn {
         items(weather.data.hourly.time) { timeString ->
